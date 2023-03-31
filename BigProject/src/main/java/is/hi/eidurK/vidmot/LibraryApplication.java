@@ -1,6 +1,5 @@
-package is.hi.eidurK.vidmot 
+package is.hi.eidurK.vidmot;
 
-import hi.verkefni.vinnsla.Stefna;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 
-import hi.verkefni.vidmot.verkefni04.BouncingController.*;
+import is.hi.eidurK.vidmot.LibraryApplication;
 
 public class LibraryApplication extends Application {
     @Override
