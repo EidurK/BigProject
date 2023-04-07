@@ -1,4 +1,5 @@
-package is.hi.eidurK;
+package is.hi.eidurK.vinnsla;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,9 +31,9 @@ public class LibrarySystem {
     }
 
     public void addFacultyMemberUser(String name, String department) throws UserOrBookDoesNotExistException {
-        if (users.size() == 0) {
+        /*if (users.size() == 0) {
             throw new UserOrBookDoesNotExistException("List of users is empty");
-        }
+        }*/
         users.add(new FacultyMember(name, department));
     }
 
@@ -49,9 +50,6 @@ public class LibrarySystem {
     }
 
     public User findUserByName(String name) throws UserOrBookDoesNotExistException {
-        if (users.size() == 0) {
-            throw new UserOrBookDoesNotExistException("List of users is empty");
-        }
         for (User user : users) {
             if (user.getName().equals(name)) {
                 return user;
@@ -103,5 +101,4 @@ public class LibrarySystem {
             }
         }
     }
-
 }

@@ -1,6 +1,6 @@
-package is.hi.eidurK;
+package is.hi.eidurK.vinnsla;
 
-class UserOrBookDoesNotExistException extends Exception{
+public class UserOrBookDoesNotExistException extends Exception{
 	public UserOrBookDoesNotExistException(String message){
 		super(message);
 	}

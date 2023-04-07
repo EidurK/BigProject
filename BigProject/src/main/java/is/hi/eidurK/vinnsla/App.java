@@ -1,4 +1,4 @@
-package is.hi.eidurK;
+package is.hi.eidurK.vinnsla;
 
 /**
  * Hello world!

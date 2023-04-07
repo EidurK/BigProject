@@ -1,4 +1,4 @@
-package is.hi.eidurK;
+package is.hi.eidurK.vinnsla;
 
 class Student extends User{
 	private Boolean feePaid;
