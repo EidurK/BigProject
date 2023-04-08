@@ -10,9 +10,12 @@ import java.util.Scanner;
 
 public class LibraryApplication {
   private static LibrarySystem library = new LibrarySystem();
+  private String UserName;
+
 
   private static void addFewBooks()throws EmptyAuthorListException, UserOrBookDoesNotExistException {
-    In in = new In("file:BigProject/100Books.csv");
+
+    In in = new In("100Books.csv");
     while (in.hasNextLine()){
       List<Author> authors = new ArrayList<>();
 
@@ -22,10 +25,24 @@ public class LibraryApplication {
       for(int i = 0; i < AllAuthorsOfABook.length; i++){
 	authors.add(new Author(AllAuthorsOfABook[i]));
       }	
-      System.out.println(bookNamesAndAuthors[0] + " : " + bookNamesAndAuthors[1]);
       library.addBookWithTitleAndAuthorlist(bookNamesAndAuthors[0], authors);
     }
 
+  }
+  
+  private static void logIn(){
+    
+
+  }
+  private static void mainLoop(){
+    clearScreen();
+  }
+
+
+
+  private static void clearScreen(){
+    System.out.println("\033[H\033[2J");
+    System.out.flush();
   }
 
   public static void main(String[] args) throws EmptyAuthorListException, UserOrBookDoesNotExistException {
