@@ -9,39 +9,29 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LibraryApplication {
-  private LibrarySystem library = new LibrarySystem();
+  private static LibrarySystem library = new LibrarySystem();
 
-  private void addTop10Books()throws EmptyAuthorListException, UserOrBookDoesNotExistException {
-    In in = new In("file:BigProject/Top10Books.txt");
+  private static void addFewBooks()throws EmptyAuthorListException, UserOrBookDoesNotExistException {
+    In in = new In("file:BigProject/100Books.csv");
     while (in.hasNextLine()){
-      String line = in.readLine();
-      String bookNamesAndAuthors[] = line.split(",");
-      for (int i=0; i < bookNamesAndAuthors.length; i+=2){
-	List<Author> authors = new ArrayList<>();
-	authors.add(new Author(bookNamesAndAuthors[i+1]));
-	Book book = new Book(bookNamesAndAuthors[i], authors);
-	library.addBookWithTitleAndAuthorlist(book.getTitle(),book.getAuthors());
-      }
+      List<Author> authors = new ArrayList<>();
+
+      String bookNamesAndAuthors[] = in.readLine().split(";");
+      String[] AllAuthorsOfABook = bookNamesAndAuthors[1].split(",");
+
+      for(int i = 0; i < AllAuthorsOfABook.length; i++){
+	authors.add(new Author(AllAuthorsOfABook[i]));
+      }	
+      System.out.println(bookNamesAndAuthors[0] + " : " + bookNamesAndAuthors[1]);
+      library.addBookWithTitleAndAuthorlist(bookNamesAndAuthors[0], authors);
     }
 
   }
 
   public static void main(String[] args) throws EmptyAuthorListException, UserOrBookDoesNotExistException {
-    In in = new In("file:BigProject/Top10Books.txt");
     Scanner s = new Scanner(System.in);
-    LibrarySystem librarySystem = new LibrarySystem();
-    while (in.hasNextLine()){
-      String line = in.readLine();
-      String bookNamesAndAuthors[] = line.split(",");
-      for (int i=0; i < bookNamesAndAuthors.length; i+=2){
-	List<Author> authors = new ArrayList<>();
-	authors.add(new Author(bookNamesAndAuthors[i+1]));
-	Book book = new Book(bookNamesAndAuthors[i], authors);
-	librarySystem.addBookWithTitleAndAuthorlist(book.getTitle(),book.getAuthors());
-	System.out.println(book.getTitle()+", "+book.getAuthors().get(0).getName()+" ");
-      }
-    }
-
+    addFewBooks();
+    
 
     while (true){
       System.out.println("Please specify whether you are a faculty member or a student (f/s):");
@@ -51,11 +41,11 @@ public class LibraryApplication {
 	System.out.println("What is your name?");
 	String name = s.nextLine();
 	try {
-	  librarySystem.findUserByName(name);
+	  library.findUserByName(name);
 	}
 	catch (UserOrBookDoesNotExistException e){
 	  FacultyMember facultyMember = new FacultyMember(name,"Upper Management");
-	  librarySystem.addFacultyMemberUser(facultyMember.getName(), facultyMember.getDepartment());
+	  library.addFacultyMemberUser(facultyMember.getName(), facultyMember.getDepartment());
 	}
 	System.out.println("Welcome " + name + ", please enter the title of the book you wish to add:");
 	String titleInput = s.next();
@@ -67,7 +57,7 @@ public class LibraryApplication {
 	for (String authorName : authorNames){
 	  authors.add(new Author(authorName.trim()));
 	}
-	librarySystem.addBookWithTitleAndAuthorlist(titleInput,authors);
+	library.addBookWithTitleAndAuthorlist(titleInput,authors);
 	System.out.println("Book successfully added!");
       }
       else if (postition.equals("s")) {
@@ -75,7 +65,7 @@ public class LibraryApplication {
 	String name = s.nextLine();
 	System.out.println("Welcome " + name + ", what is the name of the book you would like to borrow?");
 	String titleInput = s.nextLine();
-	librarySystem.findBookByTitle(titleInput);
+	library.findBookByTitle(titleInput);
       }
       else {
 	System.out.println("Input invalid");
