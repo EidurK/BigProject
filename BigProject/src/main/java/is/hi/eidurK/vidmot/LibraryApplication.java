@@ -1,10 +1,12 @@
 package is.hi.eidurK.vidmot;
 
+import com.sun.org.apache.xerces.internal.xs.XSTerm;
 import edu.princeton.cs.algs4.In;
 import is.hi.eidurK.vinnsla.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class LibraryApplication {
@@ -40,7 +42,8 @@ public class LibraryApplication {
         Scanner s = new Scanner(System.in);
         clearScreen();
         System.out.println("What is your name?");
-        String name = s.nextLine();
+        UserName = s.nextLine();
+        clearScreen();
         System.out.println("Please specify whether you are a faculty member or a student (f/s):");
         UserIsFaucultyMember = s.next().equals("f");
         clearScreen();
@@ -62,24 +65,28 @@ public class LibraryApplication {
         }
         else {
 
+            try {
+                library.findUserByName(UserName);
+            }
+            catch (UserOrBookDoesNotExistException e){
+               Student  student = new Student(UserName, false);
+                library.addStudentUser(student.getName(), student.isFeePaid());
+            }
+            studentLoop();
+
         }
     }
 
-    private static void facultyLoop(){
-        clearScreen();
+    private static void facultyLoop() throws EmptyAuthorListException{
         Scanner s = new Scanner(System.in);
         // teiknar upp töflu
-        System.out.println(hLine
-               + down + vLine + writingPosition + "1. Add book"
-               + newLine + "2. Remove book"
-               + newLine + "3. Quit"
-               + down+ hLine
-        );
+        String[] operations = {"1. Add book", "2. Remove book", "3. Quit"};
+        makeTable(operations);
         System.out.flush();
         switch (s.nextInt()){
-            case 1: break;
+            case 1: addBook(); break;
             case 2: break;
-            case 3: break;
+            case 3: System.exit(1);break;
             default:
                 System.out.println("this is not a valid option");
                 break;
@@ -91,6 +98,7 @@ public class LibraryApplication {
         System.out.println("Welcome " + UserName + ", please enter the title of the book you wish to add:");
         String titleInput = s.next();
         s.nextLine();
+        clearScreen();
         System.out.println("Please enter the name of the author/s (separated by a comma):");
         List<Author> authors = new ArrayList<>();
         String authorInput = s.nextLine();
@@ -99,6 +107,7 @@ public class LibraryApplication {
             authors.add(new Author(authorName.trim()));
         }
         library.addBookWithTitleAndAuthorlist(titleInput,authors);
+        clearScreen();
         System.out.println("Book successfully added!");
     }
     private static void clearScreen(){
@@ -108,11 +117,59 @@ public class LibraryApplication {
 
     private static void studentLoop() throws UserOrBookDoesNotExistException{
         Scanner s = new Scanner(System.in);
-        System.out.println("What is your name?");
-        String name = s.nextLine();
-        System.out.println("Welcome " + name + ", what is the name of the book you would like to borrow?");
-        String titleInput = s.nextLine();
-        library.findBookByTitle(titleInput);
+        String[] operations = {"1. Search book", "2. View my books", "3. Quit"};
+        makeTable(operations);
+        System.out.flush();
+        switch(s.nextInt()){
+            case 1: findBook(); break;
+            case 2: break;
+            case 3: System.exit(1);
+        }
+    }
+
+    private static void makeTable(String[] array){
+        System.out.print(hLine);
+        for(String s: array){
+            System.out.print(newLine + s);
+        }
+        System.out.print(down + hLine);
+        System.out.println();
+    }
+
+    private static void findBook() throws UserOrBookDoesNotExistException{
+        Scanner s = new Scanner(System.in);
+        clearScreen();
+        System.out.println("Enter the name of the book");
+        String bookName = s.next();
+        try {
+            Book book = library.findBookByTitle(bookName);
+            bookFound(book);
+        } catch (UserOrBookDoesNotExistException e){
+            clearScreen();
+            System.out.println("Book was not found (´･_･`)");
+            s.close();
+        }
+    }
+    private static void bookFound(Book b) throws UserOrBookDoesNotExistException{
+        Scanner s = new Scanner(System.in);
+       clearScreen();
+       StringBuilder SB = new StringBuilder();
+       for(Author a: b.getAuthors()){
+           SB.append(a.getName());
+           SB.append(", ");
+       }
+       System.out.println(b.getTitle() + " by " + SB.toString());
+       String[] options = {"1. Borrow " + b.getTitle(), "2. Quit"};
+       makeTable(options);
+       switch (s.nextInt()){
+           case 1: try{library.borrowBook(b, library.findUserByName(UserName));
+               System.out.println(b.getTitle() + " borrowed...");
+           } catch (UserOrBookDoesNotExistException e){System.out.println("Error...");}
+               break;
+           default: clearScreen(); break;
+
+       }
+
     }
     public static void main(String[] args) throws EmptyAuthorListException, UserOrBookDoesNotExistException {
         addFewBooks();

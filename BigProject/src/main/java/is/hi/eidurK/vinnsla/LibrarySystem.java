@@ -24,9 +24,9 @@ public class LibrarySystem {
     }
 
     public void addStudentUser(String name, Boolean feePaid) throws UserOrBookDoesNotExistException {
-        if (users.size() == 0) {
-            throw new UserOrBookDoesNotExistException("List of users is empty");
-        }
+//        if (users.size() == 0) {
+//            throw new UserOrBookDoesNotExistException("List of users is empty");
+//        }
         users.add(new Student(name, feePaid));
     }
 

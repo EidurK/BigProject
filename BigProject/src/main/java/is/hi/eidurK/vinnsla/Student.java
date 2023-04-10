@@ -1,6 +1,6 @@
 package is.hi.eidurK.vinnsla;
 
-class Student extends User{
+public class Student extends User{
 	private Boolean feePaid;
 	
 	public Student(String name, Boolean feePaid){
