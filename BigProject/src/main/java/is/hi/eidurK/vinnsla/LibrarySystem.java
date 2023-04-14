@@ -10,6 +10,8 @@ public class LibrarySystem {
     private List<Lending> lendings;
     private List<User> users;
 
+
+
     public LibrarySystem() {
         books = new ArrayList<>();
         lendings = new ArrayList<>();
@@ -100,5 +102,9 @@ public class LibrarySystem {
                 }
             }
         }
+    }
+
+    public List<Lending> getLendings() {
+        return lendings;
     }
 }

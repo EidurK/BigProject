@@ -1,6 +1,5 @@
 package is.hi.eidurK.vidmot;
 
-import com.sun.org.apache.xerces.internal.xs.XSTerm;
 import edu.princeton.cs.algs4.In;
 import is.hi.eidurK.vinnsla.*;
 
@@ -34,7 +33,6 @@ public class LibraryApplication {
       }
       library.addBookWithTitleAndAuthorlist(bookNamesAndAuthors[0], authors);
     }
-
   }
 
   private static void inputUserName(){
