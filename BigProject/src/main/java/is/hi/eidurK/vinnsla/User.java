@@ -1,6 +1,6 @@
 package is.hi.eidurK.vinnsla;
 
-abstract class User{
+abstract public class User{
 	private String name;
 	
 	public User(String name){

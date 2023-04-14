@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class LibraryApplication {
-  private static LibrarySystem library = new LibrarySystem();
+  private static LibrarySystem library; 
   private static String UserName;
   private static boolean UserIsFaucultyMember;
 
@@ -20,6 +20,7 @@ public class LibraryApplication {
   private static String down = "\033[1B";
   private static String writingPosition = "\033[4G";
   private static String newLine = down + vLine + writingPosition;
+
   private static void addFewBooks()throws EmptyAuthorListException, UserOrBookDoesNotExistException {
 
     In in = new In("100Books.csv");
@@ -194,6 +195,7 @@ public class LibraryApplication {
 
   }
   public static void main(String[] args) throws EmptyAuthorListException, UserOrBookDoesNotExistException {
+    library = new LibrarySystem();
     addFewBooks();
     while (true){
       mainLoop();
