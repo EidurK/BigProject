@@ -2,6 +2,7 @@ package is.hi.eidurK.vidmot;
 
 import edu.princeton.cs.algs4.In;
 import is.hi.eidurK.vinnsla.*;
+import is.hi.eidurK.vinnsla.Lending;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,8 @@ public class LibraryApplication {
   private static boolean UserIsFaucultyMember;
 
   //ANSI töflu strengir
-  private static String hLine = "\033[2G+-------------------+";
-  private static String vLine = "\033[2G|\033[22G|";
+  private static String hLine = "\033[2G+-------------------------------+";
+  private static String vLine = "\033[2G|\033[34G|";
   private static String down = "\033[1B";
   private static String writingPosition = "\033[4G";
   private static String newLine = down + vLine + writingPosition;
@@ -76,19 +77,34 @@ public class LibraryApplication {
   private static void facultyLoop() throws EmptyAuthorListException{
     Scanner s = new Scanner(System.in);
     // teiknar upp töflu
-    String[] operations = {"1. Add book", "2. Remove book", "3. Quit"};
+    String[] operations = {"1. Add book", "2. Remove book","3. View lendings","4. Switch to student", "5. Quit"};
     makeTable(operations);
     System.out.flush();
 
     switch (s.nextInt()){
       case 1: addBook(); break;
       case 2: break;
-      case 3: clearScreen();System.exit(1);break;
+      case 3: clearScreen();viewLendings();break; 
+      case 4: clearScreen();UserIsFaucultyMember = !UserIsFaucultyMember;break; 
+      case 5: clearScreen();System.exit(1);break;
       default:
 	      System.out.println("this is not a valid option");
 	      break;
 
     }
+  }
+
+
+  private static void viewLendings(){
+    List<Lending> lendings = library.getLendings();
+    String[] listLending = new String[lendings.size()];
+    for(int i =0; i< listLending.length; i++){
+      Lending l = lendings.get(i);
+      listLending[i] = l.getBook().getTitle() + ":  "+ l.getDueDate();  
+    }
+    makeTable(listLending);
+
+
   }
   private static void addBook() throws EmptyAuthorListException{
     clearScreen();
@@ -115,13 +131,13 @@ public class LibraryApplication {
 
   private static void studentLoop() throws UserOrBookDoesNotExistException{
     Scanner s = new Scanner(System.in);
-    String[] operations = {"1. Search book", "2. View my books", "3. Quit"};
+    String[] operations = {"1. Search book", "2. Switch to faculty user", "3. Quit"};
     makeTable(operations);
     System.out.flush();
     try{
       switch(s.nextInt()){
 	case 1: findBook(); break;
-	case 2: break;
+	case 2: UserIsFaucultyMember = !UserIsFaucultyMember;break;
 	case 3: clearScreen();System.exit(1);
       }}
     catch(Exception e){
