@@ -107,4 +107,21 @@ public class LibrarySystem {
     public List<Lending> getLendings() {
         return lendings;
     }
+
+    public boolean listOfAuthorsIsEmpty(List<Author> authors){
+       return authors.size() == 0;
+    }
+
+    public boolean listOfBooksIsEmpty(List<Book> books){
+        return books.size() == 0;
+        }
+
+    public boolean listOfLendingsIsEmpty(List<Lending> lendings){
+        return lendings.size() == 0;
+    }
+
+    public boolean listOfUsersIsEmpty(List<User> users){
+        return users.size() == 0;
+    }
+
 }
