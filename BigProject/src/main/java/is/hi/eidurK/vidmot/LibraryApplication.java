@@ -97,15 +97,7 @@ public class LibraryApplication {
 
 
   private static void viewLendings(){
-    List<Lending> lendings = library.getLendings();
-    String[] listLending = new String[lendings.size()];
-    for(int i =0; i< listLending.length; i++){
-      Lending l = lendings.get(i);
-      listLending[i] = l.getBook().getTitle() + ":  "+ l.getDueDate();  
-    }
-    makeTable(listLending);
-
-
+    makeTable(library.getLendingsStringArray());
   }
   private static void addBook() throws EmptyAuthorListException{
     clearScreen();
