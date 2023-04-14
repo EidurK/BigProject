@@ -64,18 +64,7 @@ public class LibrarySystem {
     if (books.size() == 0) {
       throw new UserOrBookDoesNotExistException("List of books is empty");
     }
-    for (Book b : books) {
-      if (b.getTitle().equals(book.getTitle())) {
-	if (b.getAuthors().size() == 0) {
-	  throw new UserOrBookDoesNotExistException("List of authors is empty");
-	}
-	for (Author a : b.getAuthors()) {
-	  if (a.getName().equals(user.getName())) {
-	    lendings.add(new Lending(book, user));
-	  }
-	}
-      }
-    }
+    lendings.add(new Lending(book, user));
   }
 
   public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate){
