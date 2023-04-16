@@ -9,6 +9,15 @@ public class LibrarySystem {
 
   private List<Book> books;
   private List<Lending> lendings;
+
+  public void setLendings(List<Lending> lendings) {
+    this.lendings = lendings;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
+
   private List<User> users;
 
 
@@ -27,16 +36,10 @@ public class LibrarySystem {
   }
 
   public void addStudentUser(String name, Boolean feePaid) throws UserOrBookDoesNotExistException {
-    //        if (users.size() == 0) {
-    //            throw new UserOrBookDoesNotExistException("List of users is empty");
-    //        }
     users.add(new Student(name, feePaid));
   }
 
   public void addFacultyMemberUser(String name, String department) throws UserOrBookDoesNotExistException {
-    /*if (users.size() == 0) {
-      throw new UserOrBookDoesNotExistException("List of users is empty");
-      }*/
     users.add(new FacultyMember(name, department));
   }
 
@@ -46,7 +49,7 @@ public class LibrarySystem {
     }
     for (Book book : books) {
       if (book.getTitle().equals(title)) {
-	return book;
+        return book;
       }
     }
     throw new UserOrBookDoesNotExistException("Book not found");
@@ -55,7 +58,7 @@ public class LibrarySystem {
   public User findUserByName(String name) throws UserOrBookDoesNotExistException {
     for (User user : users) {
       if (user.getName().equals(name)) {
-	return user;
+        return user;
       }
     }
     throw new UserOrBookDoesNotExistException("User not found");
@@ -68,10 +71,10 @@ public class LibrarySystem {
     lendings.add(new Lending(book, user));
   }
 
-  public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate){
+  public void extendLending(User user, Book book, LocalDate newDueDate){
     for (Lending l : lendings) {
-      if (l.getBook().getTitle().equals(book.getTitle()) && l.getUser().getName().equals(facultyMember.getName())) {
-	l.setDueDate(newDueDate);
+      if (l.getBook().getTitle().equals(book.getTitle()) && l.getUser().getName().equals(user.getName())) {
+        l.setDueDate(newDueDate);
       }
     }
   }
@@ -80,16 +83,9 @@ public class LibrarySystem {
     if (books.size() == 0) {
       throw new UserOrBookDoesNotExistException("List of books is empty");
     }
-    for (Book b : books) {
-      if (b.getTitle().equals(book.getTitle())) {
-	if (b.getAuthors().size() == 0) {
-	  throw new UserOrBookDoesNotExistException("List of authors is empty");
-	}
-	for (Author a : b.getAuthors()) {
-	  if (a.getName().equals(user.getName())) {
-	    lendings.remove(lendings.indexOf(new Lending(book, user)));
-	  }
-	}
+    for(Lending l: lendings){
+      if(l.getBook() == book && l.getUser() == user){
+        lendings.remove(l);
       }
     }
   }
@@ -102,15 +98,15 @@ public class LibrarySystem {
     return authors.size() == 0;
   }
 
-  public boolean listOfBooksIsEmpty(List<Book> books){
+  public boolean listOfBooksIsEmpty(){
     return books.size() == 0;
   }
 
-  public boolean listOfLendingsIsEmpty(List<Lending> lendings){
+  public boolean listOfLendingsIsEmpty(){
     return lendings.size() == 0;
   }
 
-  public boolean listOfUsersIsEmpty(List<User> users){
+  public boolean listOfUsersIsEmpty(){
     return users.size() == 0;
   }
   public String[] getLendingsStringArray(){
@@ -124,6 +120,9 @@ public class LibrarySystem {
 
   public void removeBookFromLibrary(Book b){
     books.remove(b);
+  }
+  public void setBooks(List<Book> books){
+    this.books = books;
   }
 
 }

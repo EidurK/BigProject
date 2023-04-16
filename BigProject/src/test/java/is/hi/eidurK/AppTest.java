@@ -1,14 +1,15 @@
 package is.hi.eidurK;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import is.hi.eidurK.vinnsla.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
@@ -21,15 +22,23 @@ public class AppTest {
     private List<Book> books;
     private Lending lending;
     private List<Lending> lendings;
-    private User user;
     private List<User> users;
     private List<Author> authors;
     private Author author;
+    private User user;
     private LibrarySystem system;
 
     @Before
     public void makeStackTestObject() {
         student = new Student("John Doe", true);
+        system = new LibrarySystem();
+        books = new ArrayList<>();
+        lendings = new ArrayList<>();
+        authors = new ArrayList<>();
+        users = new ArrayList<>();
+        system.setUsers(users);
+        system.setBooks(books);
+        system.setLendings(lendings);
     }
 
     @Test
@@ -46,63 +55,84 @@ public class AppTest {
 
     @Test
     public void isListofBooksEmpty(){
-        system = new LibrarySystem();
-        books = new ArrayList<>();
-        assertTrue(system.listOfBooksIsEmpty(books));
+        assertTrue(system.listOfBooksIsEmpty());
     }
 
     @Test
     public void isListofBooksNotEmpty(){
-        system = new LibrarySystem();
-        books = new ArrayList<>();
         books.add(book);
-        assertFalse(system.listOfBooksIsEmpty(books));
+        system.setBooks(books);
+        assertFalse(system.listOfBooksIsEmpty());
     }
 
     @Test
     public void isListofLendingsEmpty(){
-        system = new LibrarySystem();
-        lendings = new ArrayList<>();
-        assertTrue(system.listOfLendingsIsEmpty(lendings));
+        assertTrue(system.listOfLendingsIsEmpty());
     }
 
     @Test
     public void isListofLendingsNotEmpty(){
-        system = new LibrarySystem();
-        lendings = new ArrayList<>();
         lendings.add(lending);
-        assertFalse(system.listOfLendingsIsEmpty(lendings));
+        assertFalse(system.listOfLendingsIsEmpty());
     }
 
     @Test
     public void isListofUsersEmpty(){
-        system = new LibrarySystem();
-        users = new ArrayList<>();
-        assertTrue(system.listOfUsersIsEmpty(users));
+        assertTrue(system.listOfUsersIsEmpty());
     }
 
     @Test
     public void isListofUsersNotEmpty(){
-        system = new LibrarySystem();
-        users = new ArrayList<>();
         users.add(user);
-        assertFalse(system.listOfUsersIsEmpty(users));
+        assertFalse(system.listOfUsersIsEmpty());
     }
 
     @Test
     public void isListofAuthorsEmpty(){
-        system = new LibrarySystem();
-        authors = new ArrayList<>();
         assertTrue(system.listOfAuthorsIsEmpty(authors));
     }
 
     @Test
     public void isListofAuthorsNotEmpty(){
-        system = new LibrarySystem();
-        authors = new ArrayList<>();
         authors.add(author);
         assertFalse(system.listOfAuthorsIsEmpty(authors));
     }
+
+    @Test
+    public void addBooksMethod() throws EmptyAuthorListException {
+        authors.add(new Author("john"));
+        system.addBookWithTitleAndAuthorlist("book", authors);
+        assertFalse(system.listOfBooksIsEmpty());
+    }
+
+    @Test
+    public void addStudent() throws UserOrBookDoesNotExistException {
+        system.addStudentUser("name", false);
+        assertFalse(system.listOfUsersIsEmpty());
+    }
+
+    @Test
+    public void addLendings() throws UserOrBookDoesNotExistException {
+        books.add(book);
+        users.add(user);
+        system.borrowBook(book, user);
+        assertFalse(system.getLendings().isEmpty());
+    }
+    @Test
+    public void findUser() throws UserOrBookDoesNotExistException {
+       users.add(student);
+        assertEquals(system.findUserByName(student.getName()), student);
+    }
+
+    @Test
+    public void findBook() throws UserOrBookDoesNotExistException, EmptyAuthorListException {
+        authors.add(new Author("author"));
+        book = new Book("title", authors);
+        books.add(book);
+        assertEquals(system.findBookByTitle("title") , book);
+    }
+
+
 
 
     }
