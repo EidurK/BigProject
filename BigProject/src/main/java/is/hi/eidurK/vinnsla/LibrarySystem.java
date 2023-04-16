@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibrarySystem {
+
   private List<Book> books;
   private List<Lending> lendings;
   private List<User> users;
@@ -119,6 +120,10 @@ public class LibrarySystem {
       array[i] = l.getBook().getTitle() + ":  " + l.getUser().getName() + ":  " + l.getDueDate();
     }
     return array;
+  }
+
+  public void removeBookFromLibrary(Book b){
+    books.remove(b);
   }
 
 }
