@@ -83,11 +83,7 @@ public class LibrarySystem {
     if (books.size() == 0) {
       throw new UserOrBookDoesNotExistException("List of books is empty");
     }
-    for(Lending l: lendings){
-      if(l.getBook() == book && l.getUser() == user){
-        lendings.remove(l);
-      }
-    }
+    lendings.removeIf(l -> l.getBook() == book && l.getUser() == user);
   }
 
   public List<Lending> getLendings() {
@@ -109,7 +105,7 @@ public class LibrarySystem {
   public boolean listOfUsersIsEmpty(){
     return users.size() == 0;
   }
-  public String[] getLendingsStringArray(){
+  public String[] lendingsListToStringArray(List<Lending> lendings){
     String[] array = new String[lendings.size()];
     for(int i = 0; i < array.length; i++){
       Lending l = lendings.get(i);
@@ -117,6 +113,24 @@ public class LibrarySystem {
     }
     return array;
   }
+
+  public String[] lendingsListToStringArray(){
+    return lendingsListToStringArray(lendings);
+  }
+  public List<Lending> getLendingsOfUser(String userName) throws UserOrBookDoesNotExistException{
+    User user = findUserByName(userName);
+    List<Lending> lendingsOfUser = new ArrayList<>();
+    for(Lending l: lendings){
+      if(l.getUser().equals(user)){
+        lendingsOfUser.add(l);
+      }
+    }
+    return lendingsOfUser;
+  }
+
+
+
+
 
   public void removeBookFromLibrary(Book b){
     books.remove(b);
