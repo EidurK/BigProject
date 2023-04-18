@@ -1,6 +1,5 @@
 package is.hi.eidurK.vidmot;
 import is.hi.eidurK.vinnsla.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 public class FacultyUI extends LibraryApplication {
@@ -54,24 +53,36 @@ public class FacultyUI extends LibraryApplication {
     Gui.clearScreen();
     System.out.println("Book successfully added!");
   }
-
   private static void addOmnius() throws EmptyAuthorListException, UserOrBookDoesNotExistException {
     Gui.clearScreen();
     Scanner s = new Scanner(System.in);
     System.out.println("Welcome " + UserName + ", please enter the title of the omnibus you wish to add:");
-    String titleInput = s.next();
-    s.nextLine();
+    String titleInput = s.nextLine();
     Gui.clearScreen();
     ArrayList<Book> books = new ArrayList<>();
-    System.out.println("Please enter the name of a book you want to add to the omnibus:");
-    String bookInput = s.nextLine();
-    Book b = (Book)library.findBorrowableByTitle(bookInput);
-    books.add(b);
+    do {
+      Gui.clearScreen();
+      Gui.makeBookTable(books);
+      System.out.println("Please enter the name of a book you want to add to the omnibus or type $Exit to exit:");
+      String nameOfBook = s.nextLine();
+      try {
+        Book b = (Book) library.findBorrowableByTitle(nameOfBook);
+        books.add(b);
+        Gui.clearScreen();
+        Gui.makeBookTable(books);
+        Gui.printGreen("Book successfully added...");
+        System.out.println("Continue? (y/n)");
+      } catch (UserOrBookDoesNotExistException e) {
+        Gui.clearScreen();
+        Gui.makeBookTable(books);
+        Gui.printRed("This book does not exist...");
+        System.out.println("Continue? (y/n)");
+      }
+    } while (!s.nextLine().equals("n"));
     library.addOmnibus(titleInput,books);
     Gui.clearScreen();
-    System.out.println("Omnibus successfully added!");
+Gui.printGreen("Omnibus successfully added!");
   }
-
   private static void viewLendings(){
     Gui.clearScreen();
     Scanner s = new Scanner(System.in);

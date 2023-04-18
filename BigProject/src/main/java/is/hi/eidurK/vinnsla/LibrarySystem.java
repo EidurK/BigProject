@@ -88,33 +88,17 @@ public class LibrarySystem {
     throw new UserOrBookDoesNotExistException("User not found");
   }
 
-  /*public void borrowBorrowable(Borrowable book, User user) throws UserOrBookDoesNotExistException {
-    if (books.size() == 0) {
-    throw new UserOrBookDoesNotExistException("List of books is empty");
-    }
-    lendings.add(new Lending(book, user));
-    }*/
 
   public void borrowBorrowable(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
     findBorrowableByTitle(borrowable.getTitle()).borrowItem(this, user);
   }
 
 
-  /*public void extendLending(User user, Borrowable borrowable, LocalDate newDueDate){
-    for (Lending l : lendings) {
-    if (l.getBorrowable().getTitle().equals(borrowable.getTitle()) && l.getUser().getName().equals(user.getName())) {
-    l.setDueDate(newDueDate);
-    }
-    }
-    }*/
-  public void extendLending(FacultyMember facultyMember, Borrowable item) throws UserOrBookDoesNotExistException{
+  public void extendLending(FacultyMember facultyMember, Borrowable item) {
     item.borrowItem(this, facultyMember);
   }
 
-  public void returnItem(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
-    /*if (books.size() == 0) {
-      throw new UserOrBookDoesNotExistException("List of books is empty");
-      }*/
+  public void returnItem(Borrowable borrowable, User user) {
     lendings.removeIf(l -> l.getBorrowable() == borrowable && l.getUser() == user);
   }
 

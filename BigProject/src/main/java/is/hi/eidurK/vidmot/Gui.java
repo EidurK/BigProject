@@ -1,5 +1,10 @@
 package is.hi.eidurK.vidmot;
 
+import is.hi.eidurK.vinnsla.Book;
+import is.hi.eidurK.vinnsla.Borrowable;
+
+import java.util.ArrayList;
+
 public class Gui {
 
     //ANSI töflu strengir
@@ -27,6 +32,14 @@ public class Gui {
        System.out.print(down + hLine);
        System.out.println();
     }
+
+    public static void makeBookTable(ArrayList<Book> list){
+        String[] s = new String[list.size()];
+        for(Book b : list){
+            s[list.indexOf(b)] = b.getTitle();
+        }
+        makeTable(s);
+    }
     public static void clearScreen(){
         System.out.println("\033[H\033[2J");
         System.out.flush();
@@ -34,5 +47,8 @@ public class Gui {
 
     public static void printRed(String s){
         System.out.println("\033[1;31m"+s + "\033[0m");
+    }
+    public static void printGreen(String s){
+        System.out.println("\033[1;32m"+s + "\033[0m");
     }
 }

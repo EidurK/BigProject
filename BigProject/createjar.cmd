@@ -1,1 +1,1 @@
-mvn package & mvn install dependency:copy-dependencies
+mvn compile clean package
