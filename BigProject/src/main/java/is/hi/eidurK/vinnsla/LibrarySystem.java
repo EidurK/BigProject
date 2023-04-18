@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LibrarySystem {
 
-  private List<Book> books;
+//  private List<Borrowable> books;
   private ArrayList<Borrowable> borrowables;
   private List<Lending> lendings;
 
@@ -43,7 +43,7 @@ public class LibrarySystem {
   public void addOmnibus(String title, ArrayList<Book> book) throws EmptyAuthorListException{
     for (Book book1 : book){
       if (book1.getAuthors().isEmpty()){
-        throw new EmptyAuthorListException("List of authors is empty");
+	throw new EmptyAuthorListException("List of authors is empty");
       }
       borrowables.add(book1);
     }
@@ -58,55 +58,55 @@ public class LibrarySystem {
     users.add(new FacultyMember(name, department));
   }
 
-  /*public Book findBookByTitle(String title) throws UserOrBookDoesNotExistException {
+  /*public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
     if (books.size() == 0) {
-      throw new UserOrBookDoesNotExistException("List of books is empty");
+    throw new UserOrBookDoesNotExistException("List of books is empty");
     }
-    for (Book book : books) {
-      if (book.getTitle().equals(title)) {
-        return book;
-      }
+    for (Borrowable book : books) {
+    if (book.getTitle().equals(title)) {
+    return book;
     }
-    throw new UserOrBookDoesNotExistException("Book not found");
-  }*/
+    }
+    throw new UserOrBookDoesNotExistException("Borrowable not found");
+    }*/
 
   public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
     for (Borrowable borrowable : borrowables) {
       if (borrowable.getTitle().equals(title)) {
-        return borrowable;
+	return borrowable;
       }
     }
-    throw new UserOrBookDoesNotExistException("Book not found");
+    throw new UserOrBookDoesNotExistException("Borrowable not found");
   }
 
   public User findUserByName(String name) throws UserOrBookDoesNotExistException {
     for (User user : users) {
       if (user.getName().equals(name)) {
-        return user;
+	return user;
       }
     }
     throw new UserOrBookDoesNotExistException("User not found");
   }
 
-  /*public void borrowBorrowable(Book book, User user) throws UserOrBookDoesNotExistException {
+  /*public void borrowBorrowable(Borrowable book, User user) throws UserOrBookDoesNotExistException {
     if (books.size() == 0) {
-      throw new UserOrBookDoesNotExistException("List of books is empty");
+    throw new UserOrBookDoesNotExistException("List of books is empty");
     }
     lendings.add(new Lending(book, user));
-  }*/
+    }*/
 
   public void borrowBorrowable(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
     findBorrowableByTitle(borrowable.getTitle()).borrowItem(this, user);
-    }
+  }
 
 
   /*public void extendLending(User user, Borrowable borrowable, LocalDate newDueDate){
     for (Lending l : lendings) {
-      if (l.getBorrowable().getTitle().equals(borrowable.getTitle()) && l.getUser().getName().equals(user.getName())) {
-        l.setDueDate(newDueDate);
-      }
+    if (l.getBorrowable().getTitle().equals(borrowable.getTitle()) && l.getUser().getName().equals(user.getName())) {
+    l.setDueDate(newDueDate);
     }
-  }*/
+    }
+    }*/
   public void extendLending(FacultyMember facultyMember, Borrowable item) throws UserOrBookDoesNotExistException{
     item.borrowItem(this, facultyMember);
   }
@@ -114,7 +114,7 @@ public class LibrarySystem {
   public void returnItem(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
     /*if (books.size() == 0) {
       throw new UserOrBookDoesNotExistException("List of books is empty");
-    }*/
+      }*/
     lendings.removeIf(l -> l.getBorrowable() == borrowable && l.getUser() == user);
   }
 
@@ -126,7 +126,7 @@ public class LibrarySystem {
     return authors.size() == 0;
   }
 
-  public boolean listOfBooksIsEmpty(){
+  public boolean listOfBorrowablesIsEmpty(){
     return books.size() == 0;
   }
 
@@ -154,18 +154,18 @@ public class LibrarySystem {
     List<Lending> lendingsOfUser = new ArrayList<>();
     for(Lending l: lendings){
       if(l.getUser().equals(user)){
-        lendingsOfUser.add(l);
+	lendingsOfUser.add(l);
       }
     }
     return lendingsOfUser;
   }
 
 
-  public void removeBookFromLibrary(Book b){
-    books.remove(b);
+  public void removeBorrowableFromLibrary(Borrowable b){
+    borrowables.remove(b);
   }
-  public void setBooks(List<Book> books){
-    this.books = books;
+  public void setBorrowables(ArrayList<Borrowable> books){
+    this.borrowables = books;
   }
 
 }
