@@ -2,6 +2,8 @@ package is.hi.eidurK.vidmot;
 import edu.princeton.cs.algs4.StdOut;
 import is.hi.eidurK.vinnsla.*;
 import is.hi.eidurK.vinnsla.UserOrBookDoesNotExistException;
+
+import java.util.Objects;
 import java.util.Scanner;
 public class StudentUI extends LibraryApplication{
     protected static void studentLoop(){
@@ -11,7 +13,7 @@ public class StudentUI extends LibraryApplication{
         System.out.flush();
         try{
             switch(s.nextInt()){
-                case 1: bookFound(findBook()); break;
+                case 1: bookFound(Objects.requireNonNull(findBook())); break;
                 case 2: viewMyBooks(); break;
                 case 3: returnBook(); break;
                 case 4: extend(); break;
@@ -28,17 +30,17 @@ public class StudentUI extends LibraryApplication{
         viewMyBooks();
         System.out.println("Type the name of the book or omnibus you want to return");
         library.returnItem(library.findBorrowableByTitle(s.nextLine()), library.findUserByName(UserName));
-
     }
-
     private static void viewMyBooks() throws UserOrBookDoesNotExistException {
         Gui.clearScreen();
         Gui.makeTable(library.lendingsListToStringArray(library.getLendingsOfUser(UserName)));
     }
-    private static void bookFound(Borrowable borrowable) {
+    private static void bookFound(Borrowable borrowable) throws EmptyAuthorListException {
         Scanner s = new Scanner(System.in);
         Gui.clearScreen();
-        System.out.println(borrowable.getTitle());
+        System.out.print(borrowable.getTitle() + " by ");
+        borrowable.getAuthors().forEach(author -> System.out.print(author.getName() + ", "));
+        System.out.println();
         String[] options = {"Borrow " + borrowable.getTitle(), "Quit"};
         Gui.makeNumberedTable(options);
         if (s.nextInt() == 1) {

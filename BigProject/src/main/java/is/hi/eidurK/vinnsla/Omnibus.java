@@ -2,7 +2,7 @@ package is.hi.eidurK.vinnsla;
 import java.util.ArrayList;
 public class Omnibus implements Borrowable{
   private ArrayList<Book> books;
-  String title;
+  private String title;
   public Omnibus(String title, ArrayList<Book> books){
     this.title = title;
     this.books = books;
@@ -17,7 +17,6 @@ public class Omnibus implements Borrowable{
     for (Book book : this.getBooks()){
       book.borrowItem(librarySystem,user);
     }
-    librarySystem.getLendings().add(new Lending(this, user));
   }
   public void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
     boolean checkLending = false;
@@ -52,9 +51,7 @@ public class Omnibus implements Borrowable{
   public ArrayList<Author> getAuthors(){
     ArrayList<Author> array = new ArrayList<>();
     for(Book b: books){
-      for(Author a: b.getAuthors()){
-	array.add(a);
-      }
+        array.addAll(b.getAuthors());
     }
     return array;
   }
