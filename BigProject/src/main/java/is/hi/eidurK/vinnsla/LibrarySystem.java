@@ -69,10 +69,15 @@ public class LibrarySystem {
     throw new UserOrBookDoesNotExistException("Borrowable not found");
     }*/
 
-  public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
-    for (Borrowable borrowable : borrowables) {
-      if (borrowable.getTitle().equals(title)) {
-	return borrowable;
+  public Book findBookByTitle(String title) throws UserOrBookDoesNotExistException {
+    List<Borrowable> lB =borrowables.stream().filter(p -> {
+      return p.getClass().getName().equals("Book");
+    }).toList();
+
+    for (Borrowable borrowable : lB) {
+      Book bok = (Book) borrowable;
+      if (bok.getTitle().equals(title)) {
+	return bok;
       }
     }
     throw new UserOrBookDoesNotExistException("Borrowable not found");
