@@ -33,7 +33,7 @@ public class LibrarySystem {
     users = new ArrayList<>();
   }
 
-  public void addBookWithTitleAndAuthorlist(String title, List<Author> authors) throws EmptyAuthorListException {
+  public void addBookWithTitleAndAuthorlist(String title, ArrayList<Author> authors) throws EmptyAuthorListException {
     if (authors.size() == 0) {
       throw new EmptyAuthorListException("List of authors is empty");
     }
@@ -45,7 +45,6 @@ public class LibrarySystem {
       if (book1.getAuthors().isEmpty()){
 	throw new EmptyAuthorListException("List of authors is empty");
       }
-      borrowables.add(book1);
     }
     borrowables.add(new Omnibus(title, book));
   }
