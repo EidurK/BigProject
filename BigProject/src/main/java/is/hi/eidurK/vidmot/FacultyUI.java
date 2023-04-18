@@ -28,11 +28,11 @@ public class FacultyUI extends LibraryApplication {
     Gui.clearScreen();
     Borrowable borrowable = findBook();
     if(borrowable != null){
-      System.out.println("Are you sure you want to remove " + borrowable.getTitle() +" by " + getAuthors(borrowable) + " from library (y/n)");
+      System.out.println("Are you sure you want to remove " + borrowable.getTitle() + " from library (y/n)");
       String svar = s.nextLine();
       if(svar.equals("y")| svar.equals("Y")) {
 	Gui.clearScreen();
-	library.removeBorrowableFromLibrary(library.findBorrowableByTitle(borrowable.getTitle()));
+	library.removeBorrowableFromLibrary(library.findBookByTitle(borrowable.getTitle()));
       }
       Gui.printRed(borrowable.getTitle() + " removed");
     }
@@ -66,14 +66,8 @@ public class FacultyUI extends LibraryApplication {
     ArrayList<Book> books = new ArrayList<>();
     System.out.println("Please enter the name of a book you want to add to the omnibus:");
     String bookInput = s.nextLine();
-    try {
-      library.addOmnibus(library.findBorrowableByTitle(bookInput));
-    }
-    String[] bookNames = booksInput.split(",");
-    for (String bookName : bookNames){
-      bookName.
-	books.add(new Book(bookName.trim(), b));
-    }
+    Book b = library.findBookByTitle(bookInput);
+	books.add(new Book(b.getTitle(), b.getAuthors()));
     library.addOmnibus(titleInput,books);
     Gui.clearScreen();
     System.out.println("Omnibus successfully added!");

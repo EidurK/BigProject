@@ -18,6 +18,7 @@ public class AppTest {
   private List<Lending> lendings;
   private List<User> users;
   private ArrayList<Author> authors;
+  private ArrayList<Borrowable> borrowables;
   private Author author;
   private User user;
   private LibrarySystem system;
@@ -29,8 +30,9 @@ public class AppTest {
     lendings = new ArrayList<>();
     authors = new ArrayList<>();
     users = new ArrayList<>();
+    borrowables = new ArrayList<>();
     system.setUsers(users);
-    system.setBorrowables(books);
+    system.setBorrowables(borrowables);
     system.setLendings(lendings);
   }
   @Test
@@ -50,7 +52,7 @@ public class AppTest {
   @Test
   public void isListofBooksNotEmpty(){
     books.add(book);
-    system.setBorrowables(books);
+    system.setBorrowables(borrowables);
     assertFalse(system.listOfBorrowablesIsEmpty());
   }
   @Test
@@ -108,6 +110,6 @@ public class AppTest {
     authors.add(new Author("author"));
     book = new Book("title", authors);
     books.add(book);
-    assertEquals(system.findBorrowableByTitle("title") , book);
+    assertEquals(system.findBookByTitle("title") , book);
   }
 }

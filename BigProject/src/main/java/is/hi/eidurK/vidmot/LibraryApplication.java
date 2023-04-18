@@ -14,7 +14,7 @@ public class LibraryApplication {
   private static void addFewBooks()throws EmptyAuthorListException {
     In in = new In("100Books.csv");
     while (in.hasNextLine()){
-      List<Author> authors = new ArrayList<>();
+      ArrayList<Author> authors = new ArrayList<>();
       String[] bookNamesAndAuthors = in.readLine().split(";");
       String[] AllAuthorsOfABook = bookNamesAndAuthors[1].split(",");
       for (String s : AllAuthorsOfABook) {
@@ -63,7 +63,7 @@ public class LibraryApplication {
     Gui.clearScreen();
     System.out.println("Enter the name of the book");
     try {
-      return library.findBorrowableByTitle(s.nextLine());
+      return library.findBookByTitle(s.nextLine());
     } catch (UserOrBookDoesNotExistException |  NoSuchElementException e){
       Gui.clearScreen();
       System.out.println("Book was not found (´･_･`)");
