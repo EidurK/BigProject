@@ -8,15 +8,16 @@ public class FacultyUI extends LibraryApplication {
     protected static void facultyLoop() throws EmptyAuthorListException, UserOrBookDoesNotExistException {
         Gui.clearScreen();
         Scanner s = new Scanner(System.in);
-        String[] operations = {"Add book", "Remove book","View lendings","Switch to student", "Quit"};
+        String[] operations = {"Add book", "Remove book", "Add Omnibus","View lendings","Switch to student", "Quit"};
         Gui.makeNumberedTable(operations);
         System.out.flush();
         switch (s.nextInt()){
             case 1: addBook(); break;
             case 2: removeItem(); break;
-            case 3: viewLendings();break;
-            case 4: Gui.clearScreen();UserIsFaucultyMember = !UserIsFaucultyMember;break;
-            case 5: Gui.clearScreen();System.exit(1);break;
+            case 3: addOmnius(); break;
+            case 4: viewLendings();break;
+            case 5: Gui.clearScreen();UserIsFaucultyMember = !UserIsFaucultyMember;break;
+            case 6: Gui.clearScreen();System.exit(1);break;
             default:
                 System.out.println("this is not a valid option");
                 break;
@@ -31,7 +32,7 @@ public class FacultyUI extends LibraryApplication {
             String svar = s.nextLine();
             if(svar.equals("y")| svar.equals("Y")) {
                 Gui.clearScreen();
-                library.removeBookFromLibrary(library.findBorrowableByTitle(borrowable.getTitle()));
+                library.removeBorrowableFromLibrary(library.findBorrowableByTitle(borrowable.getTitle()));
             }
             Gui.printRed(borrowable.getTitle() + " removed");
         }
@@ -54,6 +55,30 @@ public class FacultyUI extends LibraryApplication {
         Gui.clearScreen();
         System.out.println("Book successfully added!");
     }
+
+    private static void addOmnius() throws EmptyAuthorListException, UserOrBookDoesNotExistException {
+        Gui.clearScreen();
+        Scanner s = new Scanner(System.in);
+        System.out.println("Welcome " + UserName + ", please enter the title of the omnibus you wish to add:");
+        String titleInput = s.next();
+        s.nextLine();
+        Gui.clearScreen();
+        ArrayList<Book> books = new ArrayList<>();
+        System.out.println("Please enter the name of a book you want to add to the omnibus:");
+        String bookInput = s.nextLine();
+        try {
+            library.addOmnibus(library.findBorrowableByTitle(bookInput));
+        }
+        String[] bookNames = booksInput.split(",");
+        for (String bookName : bookNames){
+            bookName.
+            books.add(new Book(bookName.trim(), b));
+        }
+        library.addOmnibus(titleInput,books);
+        Gui.clearScreen();
+        System.out.println("Omnibus successfully added!");
+    }
+
     private static void viewLendings(){
         Gui.clearScreen();
         Scanner s = new Scanner(System.in);

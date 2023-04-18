@@ -33,17 +33,17 @@ public class StudentUI extends LibraryApplication{
         Gui.clearScreen();
         Gui.makeTable(library.lendingsListToStringArray(library.getLendingsOfUser(UserName)));
     }
-    private static void bookFound(Borrowable book) {
+    private static void bookFound(Borrowable borrowable) {
         Scanner s = new Scanner(System.in);
         Gui.clearScreen();
-        System.out.println(book.getTitle() + " by ");
-        String[] options = {"Borrow " + book.getTitle(), "Quit"};
+        System.out.println(borrowable.getTitle() + " by ");
+        String[] options = {"Borrow " + borrowable.getTitle(), "Quit"};
         Gui.makeNumberedTable(options);
         if (s.nextInt() == 1) {
             try {
-                library.borrowBorrowable(book, library.findUserByName(UserName));
+                library.borrowBorrowable(borrowable, library.findUserByName(UserName));
                 Gui.clearScreen();
-                System.out.println(book.getTitle() + " borrowed...");
+                System.out.println(borrowable.getTitle() + " borrowed...");
             } catch (UserOrBookDoesNotExistException e) {
                 System.out.println("Error...");
             }

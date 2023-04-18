@@ -43,7 +43,7 @@ public class LibrarySystem {
   public void addOmnibus(String title, ArrayList<Book> book) throws EmptyAuthorListException{
     for (Book book1 : book){
       if (book1.getAuthors().isEmpty()){
-	throw new EmptyAuthorListException("List of authors is empty");
+	    throw new EmptyAuthorListException("List of authors is empty");
       }
     }
     borrowables.add(new Omnibus(title, book));
@@ -127,7 +127,7 @@ public class LibrarySystem {
   }
 
   public boolean listOfBorrowablesIsEmpty(){
-    return books.size() == 0;
+    return borrowables.size() == 0;
   }
 
   public boolean listOfLendingsIsEmpty(){
