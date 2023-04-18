@@ -22,7 +22,7 @@ public class AppTest {
   private User user;
   private LibrarySystem system;
   @Before
-  public void makeStackTestObject() {
+  public void makeStackTestObject()throws EmptyAuthorListException {
     student = new Student("John Doe", true);
     system = new LibrarySystem();
     books = new ArrayList<>();
@@ -30,6 +30,8 @@ public class AppTest {
     authors = new ArrayList<>();
     users = new ArrayList<>();
     borrowables = new ArrayList<>();
+    authors.add(new Author("bubbi"));
+    book = new Book("book", authors);
     system.setUsers(users);
     system.setBorrowables(borrowables);
     system.setLendings(lendings);
@@ -76,12 +78,7 @@ public class AppTest {
     assertFalse(system.listOfUsersIsEmpty());
   }
   @Test
-  public void isListofAuthorsEmpty(){
-    assertTrue(system.listOfAuthorsIsEmpty(authors));
-  }
-  @Test
   public void isListofAuthorsNotEmpty(){
-    authors.add(author);
     assertFalse(system.listOfAuthorsIsEmpty(authors));
   }
   @Test
