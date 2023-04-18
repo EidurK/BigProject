@@ -55,7 +55,6 @@ public class StudentUI extends LibraryApplication{
             Gui.clearScreen();
         }
     }
-
     private static void extend() throws UserOrBookDoesNotExistException {
         Scanner s = new Scanner(System.in);
         Gui.clearScreen();
@@ -69,9 +68,5 @@ public class StudentUI extends LibraryApplication{
             facultyMember = (FacultyMember) library.findUserByName(facultyName);
             library.extendLending(facultyMember, borrowable);
         }
-
-
-
-
     }
 }

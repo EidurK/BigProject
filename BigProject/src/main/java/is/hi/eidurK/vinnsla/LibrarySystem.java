@@ -58,8 +58,8 @@ public class LibrarySystem {
   public void borrowBorrowable(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
     findBorrowableByTitle(borrowable.getTitle()).borrowItem(this, user);
   }
-  public void extendLending(FacultyMember facultyMember, Borrowable item) {
-    item.borrowItem(this, facultyMember);
+  public void extendLending(FacultyMember facultyMember, Borrowable borrowable) throws UserOrBookDoesNotExistException {
+    borrowable.extendLending(facultyMember, this);
   }
   public void returnItem(Borrowable borrowable, User user) {
     lendings.removeIf(l -> l.getBorrowable() == borrowable && l.getUser() == user);
