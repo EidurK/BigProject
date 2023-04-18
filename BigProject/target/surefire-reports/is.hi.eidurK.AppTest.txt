@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: is.hi.eidurK.AppTest
+-------------------------------------------------------------------------------
+Tests run: 15, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.036 s <<< FAILURE! - in is.hi.eidurK.AppTest
+findBook(is.hi.eidurK.AppTest)  Time elapsed: 0.003 s  <<< ERROR!
+is.hi.eidurK.vinnsla.UserOrBookDoesNotExistException: Borrowable not found
+	at is.hi.eidurK.AppTest.findBook(AppTest.java:116)
+
+addLendings(is.hi.eidurK.AppTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "is.hi.eidurK.vinnsla.Borrowable.getTitle()" because "borrowable" is null
+	at is.hi.eidurK.AppTest.addLendings(AppTest.java:103)
+

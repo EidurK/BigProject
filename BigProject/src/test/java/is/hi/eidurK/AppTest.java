@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import static org.junit.Assert.*;
 /**
- * Unit test for simple App.
+ * Unit test for not simple App.
  */
 public class AppTest {
   private Student student;
@@ -53,6 +53,9 @@ public class AppTest {
   public void isListofBooksNotEmpty(){
     books.add(book);
     system.setBorrowables(borrowables);
+    for(Book b: books){
+      borrowables.add(b);
+    }
     assertFalse(system.listOfBorrowablesIsEmpty());
   }
   @Test
@@ -95,7 +98,7 @@ public class AppTest {
   }
   @Test
   public void addLendings() throws UserOrBookDoesNotExistException {
-    books.add(book);
+    borrowables.add(book);
     users.add(user);
     system.borrowBorrowable(book, user);
     assertFalse(system.getLendings().isEmpty());
@@ -109,7 +112,7 @@ public class AppTest {
   public void findBook() throws UserOrBookDoesNotExistException, EmptyAuthorListException {
     authors.add(new Author("author"));
     book = new Book("title", authors);
-    books.add(book);
+    borrowables.add(book);
     assertEquals(system.findBookByTitle("title") , book);
   }
 }
