@@ -1,4 +1,5 @@
 package is.hi.eidurK.vinnsla;
+import java.util.ArrayList;
 
 public interface Borrowable {
 
@@ -6,7 +7,8 @@ public interface Borrowable {
 
     void returnItem(LibrarySystem librarySystem, User user)throws UserOrBookDoesNotExistException;
 
-    Author getAuthors()throws EmptyAuthorListException;
+    ArrayList<Author> getAuthors()throws EmptyAuthorListException;
+
     
 
     void extendLending(FacultyMember facultyMember, LibrarySystem librarySystem) throws UserOrBookDoesNotExistException;
