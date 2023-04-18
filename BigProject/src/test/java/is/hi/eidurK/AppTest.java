@@ -115,7 +115,7 @@ public class AppTest {
     public void addLendings() throws UserOrBookDoesNotExistException {
         books.add(book);
         users.add(user);
-        system.borrowBook(book, user);
+        system.borrowBorrowable(book, user);
         assertFalse(system.getLendings().isEmpty());
     }
     @Test
@@ -129,7 +129,7 @@ public class AppTest {
         authors.add(new Author("author"));
         book = new Book("title", authors);
         books.add(book);
-        assertEquals(system.findBookByTitle("title") , book);
+        assertEquals(system.findBorrowableByTitle("title") , book);
     }
 
 

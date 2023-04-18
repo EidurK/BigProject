@@ -58,12 +58,12 @@ public class LibraryApplication {
       StudentUI.studentLoop();
     }
   }
-  protected static Book findBook() {
+  protected static Borrowable findBook() {
     Scanner s = new Scanner(System.in);
     Gui.clearScreen();
     System.out.println("Enter the name of the book");
     try {
-      return library.findBookByTitle(s.nextLine());
+      return library.findBorrowableByTitle(s.nextLine());
     } catch (UserOrBookDoesNotExistException |  NoSuchElementException e){
       Gui.clearScreen();
       System.out.println("Book was not found (´･_･`)");

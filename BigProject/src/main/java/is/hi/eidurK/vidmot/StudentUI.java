@@ -25,7 +25,7 @@ public class StudentUI extends LibraryApplication{
         Scanner s = new Scanner(System.in);
         viewMyBooks();
         System.out.println("Type the name of the book you want to return");
-        library.returnBook(library.findBookByTitle(s.nextLine()), library.findUserByName(UserName));
+        library.returnItem(library.findBorrowableByTitle(s.nextLine()), library.findUserByName(UserName));
 
     }
 
@@ -41,7 +41,7 @@ public class StudentUI extends LibraryApplication{
         Gui.makeNumberedTable(options);
         if (s.nextInt() == 1) {
             try {
-                library.borrowBook(book, library.findUserByName(UserName));
+                library.borrowBorrowable(book, library.findUserByName(UserName));
                 Gui.clearScreen();
                 System.out.println(book.getTitle() + " borrowed...");
             } catch (UserOrBookDoesNotExistException e) {

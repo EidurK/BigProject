@@ -1,8 +1,6 @@
 package is.hi.eidurK.vidmot;
-import is.hi.eidurK.vinnsla.Author;
-import is.hi.eidurK.vinnsla.Book;
-import is.hi.eidurK.vinnsla.EmptyAuthorListException;
-import is.hi.eidurK.vinnsla.UserOrBookDoesNotExistException;
+import is.hi.eidurK.vinnsla.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +13,7 @@ public class FacultyUI extends LibraryApplication {
         System.out.flush();
         switch (s.nextInt()){
             case 1: addBook(); break;
-            case 2: removeBook(); break;
+            case 2: removeItem(); break;
             case 3: viewLendings();break;
             case 4: Gui.clearScreen();UserIsFaucultyMember = !UserIsFaucultyMember;break;
             case 5: Gui.clearScreen();System.exit(1);break;
@@ -24,18 +22,18 @@ public class FacultyUI extends LibraryApplication {
                 break;
         }
     }
-    private static void removeBook() throws UserOrBookDoesNotExistException {
+    private static void removeItem() throws UserOrBookDoesNotExistException {
         Scanner s = new Scanner(System.in);
         Gui.clearScreen();
-        Book book = findBook();
-        if(book != null){
-            System.out.println("Are you sure you want to remove " + book.getTitle() +" by " + getAuthors(book) + " from library (y/n)");
+        Borrowable borrowable = findBook();
+        if(borrowable != null){
+            System.out.println("Are you sure you want to remove " + borrowable.getTitle() +" by " + getAuthors(borrowable) + " from library (y/n)");
             String svar = s.nextLine();
             if(svar.equals("y")| svar.equals("Y")) {
                 Gui.clearScreen();
-                library.removeBookFromLibrary(library.findBookByTitle(book.getTitle()));
+                library.removeBookFromLibrary(library.findBorrowableByTitle(borrowable.getTitle()));
             }
-            Gui.printRed(book.getTitle() + " removed");
+            Gui.printRed(borrowable.getTitle() + " removed");
         }
     }
     private static void addBook() throws EmptyAuthorListException{
