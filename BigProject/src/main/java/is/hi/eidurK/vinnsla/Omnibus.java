@@ -17,7 +17,6 @@ public class Omnibus implements Borrowable{
     for (Book book : this.getBooks()){
       book.borrowItem(librarySystem,user);
     }
-    librarySystem.getLendings().add(new Lending(this, user));
   }
   public void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
     boolean checkLending = false;

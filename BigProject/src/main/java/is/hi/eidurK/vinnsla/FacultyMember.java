@@ -1,8 +1,6 @@
 package is.hi.eidurK.vinnsla;
-
 public class FacultyMember extends User {
 	private String department;
-
 	public FacultyMember(String name, String department){
 		super(name);
 		this.department = department;
@@ -13,5 +11,4 @@ public class FacultyMember extends User {
 	public void setDepartment(String department){
 		this.department = department;
 	}
-
 }

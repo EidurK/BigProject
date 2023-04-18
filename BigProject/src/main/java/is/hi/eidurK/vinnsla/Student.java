@@ -1,8 +1,6 @@
 package is.hi.eidurK.vinnsla;
-
 public class Student extends User{
 	private Boolean feePaid;
-	
 	public Student(String name, Boolean feePaid){
 		super(name);
 		this.feePaid = feePaid;
@@ -13,5 +11,4 @@ public class Student extends User{
 	public void setFeePaid(Boolean feePaid){
 		this.feePaid = feePaid;
 	}
-
 }

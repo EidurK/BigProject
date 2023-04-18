@@ -53,7 +53,7 @@ public class FacultyUI extends LibraryApplication {
     Gui.clearScreen();
     System.out.println("Book successfully added!");
   }
-  private static void addOmnius() throws EmptyAuthorListException, UserOrBookDoesNotExistException {
+  private static void addOmnius() throws EmptyAuthorListException{
     Gui.clearScreen();
     Scanner s = new Scanner(System.in);
     System.out.println("Welcome " + UserName + ", please enter the title of the omnibus you wish to add:");
