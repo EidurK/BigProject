@@ -1,5 +1,5 @@
 package is.hi.eidurK.vidmot;
-import is.hi.eidurK.vinnsla.Book;
+import is.hi.eidurK.vinnsla.*;
 import is.hi.eidurK.vinnsla.UserOrBookDoesNotExistException;
 import java.util.Scanner;
 public class StudentUI extends LibraryApplication{
@@ -33,10 +33,10 @@ public class StudentUI extends LibraryApplication{
         Gui.clearScreen();
         Gui.makeTable(library.lendingsListToStringArray(library.getLendingsOfUser(UserName)));
     }
-    private static void bookFound(Book book) {
+    private static void bookFound(Borrowable book) {
         Scanner s = new Scanner(System.in);
         Gui.clearScreen();
-        System.out.println(book.getTitle() + " by " + getAuthors(book));
+        System.out.println(book.getTitle() + " by ");
         String[] options = {"Borrow " + book.getTitle(), "Quit"};
         Gui.makeNumberedTable(options);
         if (s.nextInt() == 1) {

@@ -6,6 +6,9 @@ public interface Borrowable {
 
     void returnItem(LibrarySystem librarySystem, User user)throws UserOrBookDoesNotExistException;
 
+    Author getAuthors()throws EmptyAuthorListException;
+    
+
     void extendLending(FacultyMember facultyMember, LibrarySystem librarySystem) throws UserOrBookDoesNotExistException;
 
     String getTitle();
