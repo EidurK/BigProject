@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-19-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/surefire/surefirebooter1757622845089253530.jar /home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/surefire 2023-04-18T12-52-10_024-jvmRun1 surefire7788559018239375763tmp surefire_04460591462952682988tmp"/>
+    <property name="sun.java.command" value="/home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/surefire/surefirebooter13960534975744953610.jar /home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/surefire 2023-04-18T13-07-57_595-jvmRun1 surefire6304643726792838492tmp surefire_04147425532503798252tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/test-classes:/home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/classes:/home/eidur/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/eidur/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/eidur/.m2/repository/com/github/FGM-148/algs4/1.0.0.0/algs4-1.0.0.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/surefire/surefirebooter1757622845089253530.jar"/>
+    <property name="surefire.real.class.path" value="/home/eidur/Documents/Hi/hbv202g/BigProject/BigProject/target/surefire/surefirebooter13960534975744953610.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="19.0.2+7-Ubuntu-0ubuntu322.04"/>
     <property name="user.name" value="eidur"/>
@@ -53,17 +53,17 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="isListofBorrowablesEmpty" classname="is.hi.eidurK.AppTest" time="0.002"/>
+  <testcase name="isListofBorrowablesEmpty" classname="is.hi.eidurK.AppTest" time="0.003"/>
   <testcase name="isListofBooksNotEmpty" classname="is.hi.eidurK.AppTest" time="0"/>
   <testcase name="findBook" classname="is.hi.eidurK.AppTest" time="0"/>
   <testcase name="findUser" classname="is.hi.eidurK.AppTest" time="0"/>
-  <testcase name="isListofUsersEmpty" classname="is.hi.eidurK.AppTest" time="0"/>
-  <testcase name="addStudent" classname="is.hi.eidurK.AppTest" time="0.001"/>
+  <testcase name="isListofUsersEmpty" classname="is.hi.eidurK.AppTest" time="0.001"/>
+  <testcase name="addStudent" classname="is.hi.eidurK.AppTest" time="0"/>
   <testcase name="feeIsNotPaid" classname="is.hi.eidurK.AppTest" time="0"/>
-  <testcase name="isListofLendingsEmpty" classname="is.hi.eidurK.AppTest" time="0"/>
+  <testcase name="isListofLendingsEmpty" classname="is.hi.eidurK.AppTest" time="0.001"/>
   <testcase name="addBooksMethod" classname="is.hi.eidurK.AppTest" time="0"/>
-  <testcase name="addLendings" classname="is.hi.eidurK.AppTest" time="0.012"/>
-  <testcase name="feeIsPaid" classname="is.hi.eidurK.AppTest" time="0"/>
+  <testcase name="addLendings" classname="is.hi.eidurK.AppTest" time="0.008"/>
+  <testcase name="feeIsPaid" classname="is.hi.eidurK.AppTest" time="0.001"/>
   <testcase name="isListofLendingsNotEmpty" classname="is.hi.eidurK.AppTest" time="0"/>
   <testcase name="isListofUsersNotEmpty" classname="is.hi.eidurK.AppTest" time="0"/>
   <testcase name="isListofAuthorsNotEmpty" classname="is.hi.eidurK.AppTest" time="0"/>
