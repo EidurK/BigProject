@@ -25,7 +25,7 @@ public class StudentUI extends LibraryApplication{
         Scanner s = new Scanner(System.in);
         viewMyBooks();
         System.out.println("Type the name of the book you want to return");
-        library.returnItem(library.findBookByTitle(s.nextLine()), library.findUserByName(UserName));
+        library.returnItem(library.findBorrowableByTitle(s.nextLine()), library.findUserByName(UserName));
 
     }
 

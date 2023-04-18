@@ -1,10 +1,8 @@
 package is.hi.eidurK.vinnsla;
 
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LibrarySystem {
 
@@ -70,15 +68,10 @@ public class LibrarySystem {
     throw new UserOrBookDoesNotExistException("Borrowable not found");
     }*/
 
-  public Book findBookByTitle(String title) throws UserOrBookDoesNotExistException {
-    List<Borrowable> lB =borrowables.stream().filter(p -> {
-      return p.getClass().getName().equals("Book");
-    }).collect(Collectors.toList());
-
-    for (Borrowable borrowable : lB) {
-      Book bok = (Book) borrowable;
-      if (bok.getTitle().equals(title)) {
-	return bok;
+  public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
+    for (Borrowable borrowable : borrowables) {
+      if (borrowable.getTitle().equals(title)) {
+	return borrowable;
       }
     }
     throw new UserOrBookDoesNotExistException("Borrowable not found");
@@ -103,7 +96,7 @@ public class LibrarySystem {
     }*/
 
   public void borrowBorrowable(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
-    findBookByTitle(borrowable.getTitle()).borrowItem(this, user);
+    findBorrowableByTitle(borrowable.getTitle()).borrowItem(this, user);
   }
 
 

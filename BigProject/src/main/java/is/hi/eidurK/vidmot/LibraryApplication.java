@@ -2,10 +2,8 @@ package is.hi.eidurK.vidmot;
 import edu.princeton.cs.algs4.In;
 import is.hi.eidurK.vinnsla.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class LibraryApplication {
   protected static LibrarySystem library;
@@ -63,7 +61,7 @@ public class LibraryApplication {
     Gui.clearScreen();
     System.out.println("Enter the name of the book");
     try {
-      return library.findBookByTitle(s.nextLine());
+      return library.findBorrowableByTitle(s.nextLine());
     } catch (UserOrBookDoesNotExistException |  NoSuchElementException e){
       Gui.clearScreen();
       System.out.println("Book was not found (´･_･`)");

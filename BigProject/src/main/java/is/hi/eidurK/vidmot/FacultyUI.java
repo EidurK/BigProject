@@ -2,7 +2,6 @@ package is.hi.eidurK.vidmot;
 import is.hi.eidurK.vinnsla.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 public class FacultyUI extends LibraryApplication {
   protected static void facultyLoop() throws EmptyAuthorListException, UserOrBookDoesNotExistException {
@@ -32,7 +31,7 @@ public class FacultyUI extends LibraryApplication {
       String svar = s.nextLine();
       if(svar.equals("y")| svar.equals("Y")) {
 	Gui.clearScreen();
-	library.removeBorrowableFromLibrary(library.findBookByTitle(borrowable.getTitle()));
+	library.removeBorrowableFromLibrary(library.findBorrowableByTitle(borrowable.getTitle()));
       }
       Gui.printRed(borrowable.getTitle() + " removed");
     }
@@ -66,8 +65,8 @@ public class FacultyUI extends LibraryApplication {
     ArrayList<Book> books = new ArrayList<>();
     System.out.println("Please enter the name of a book you want to add to the omnibus:");
     String bookInput = s.nextLine();
-    Book b = library.findBookByTitle(bookInput);
-	books.add(new Book(b.getTitle(), b.getAuthors()));
+    Book b = (Book)library.findBorrowableByTitle(bookInput);
+    books.add(b);
     library.addOmnibus(titleInput,books);
     Gui.clearScreen();
     System.out.println("Omnibus successfully added!");

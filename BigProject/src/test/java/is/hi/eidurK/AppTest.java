@@ -2,9 +2,8 @@ package is.hi.eidurK;
 import is.hi.eidurK.vinnsla.*;
 import org.junit.Before;
 import org.junit.Test;
-import java.sql.Array;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import static org.junit.Assert.*;
 /**
@@ -113,6 +112,6 @@ public class AppTest {
     authors.add(new Author("author"));
     book = new Book("title", authors);
     borrowables.add(book);
-    assertEquals(system.findBookByTitle("title") , book);
+    assertEquals(system.findBorrowableByTitle("title") , book);
   }
 }
