@@ -59,7 +59,7 @@ public class LibraryApplication {
   protected static Borrowable findBook() {
     Scanner s = new Scanner(System.in);
     Gui.clearScreen();
-    System.out.println("Enter the name of the book");
+    System.out.println("Enter the name of the book or omnibus");
     try {
       return library.findBorrowableByTitle(s.nextLine());
     } catch (UserOrBookDoesNotExistException |  NoSuchElementException e){

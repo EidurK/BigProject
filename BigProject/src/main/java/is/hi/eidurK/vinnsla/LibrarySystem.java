@@ -56,18 +56,6 @@ public class LibrarySystem {
     users.add(new FacultyMember(name, department));
   }
 
-  /*public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
-    if (books.size() == 0) {
-    throw new UserOrBookDoesNotExistException("List of books is empty");
-    }
-    for (Borrowable book : books) {
-    if (book.getTitle().equals(title)) {
-    return book;
-    }
-    }
-    throw new UserOrBookDoesNotExistException("Borrowable not found");
-    }*/
-
   public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
     for (Borrowable borrowable : borrowables) {
       if (borrowable.getTitle().equals(title)) {
@@ -88,33 +76,19 @@ public class LibrarySystem {
     throw new UserOrBookDoesNotExistException("User not found");
   }
 
-  /*public void borrowBorrowable(Borrowable book, User user) throws UserOrBookDoesNotExistException {
-    if (books.size() == 0) {
-    throw new UserOrBookDoesNotExistException("List of books is empty");
-    }
-    lendings.add(new Lending(book, user));
-    }*/
-
   public void borrowBorrowable(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
     findBorrowableByTitle(borrowable.getTitle()).borrowItem(this, user);
   }
 
+  /*public void extendLending(FacultyMember facultyMember, Borrowable borrowable) throws UserOrBookDoesNotExistException{
+    borrowable.borrowItem(this, facultyMember);
+  }*/
 
-  /*public void extendLending(User user, Borrowable borrowable, LocalDate newDueDate){
-    for (Lending l : lendings) {
-    if (l.getBorrowable().getTitle().equals(borrowable.getTitle()) && l.getUser().getName().equals(user.getName())) {
-    l.setDueDate(newDueDate);
-    }
-    }
-    }*/
-  public void extendLending(FacultyMember facultyMember, Borrowable item) throws UserOrBookDoesNotExistException{
-    item.borrowItem(this, facultyMember);
+  public void extendLending(FacultyMember facultyMember, Borrowable borrowable) throws UserOrBookDoesNotExistException{
+    borrowable.extendLending(facultyMember, this);
   }
 
-  public void returnItem(Borrowable borrowable, User user) throws UserOrBookDoesNotExistException {
-    /*if (books.size() == 0) {
-      throw new UserOrBookDoesNotExistException("List of books is empty");
-      }*/
+  public void returnItem(Borrowable borrowable, User user) {
     lendings.removeIf(l -> l.getBorrowable() == borrowable && l.getUser() == user);
   }
 

@@ -63,10 +63,13 @@ public class FacultyUI extends LibraryApplication {
     s.nextLine();
     Gui.clearScreen();
     ArrayList<Book> books = new ArrayList<>();
-    System.out.println("Please enter the name of a book you want to add to the omnibus:");
+    System.out.println("Please enter the name of the books you wish to add to the omnibus (separated by a comma):");
     String bookInput = s.nextLine();
-    Book b = (Book)library.findBorrowableByTitle(bookInput);
-    books.add(b);
+    String[] bookNames = bookInput.split(",");
+    for (String bookName : bookNames) {
+      Book b = (Book) library.findBorrowableByTitle(bookName);
+      books.add(b);
+    }
     library.addOmnibus(titleInput,books);
     Gui.clearScreen();
     System.out.println("Omnibus successfully added!");
