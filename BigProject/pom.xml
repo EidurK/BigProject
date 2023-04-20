@@ -9,8 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>BigProject</name>
+    <description>
+        This project expands the library system built in assignment 8. In this library system the user has
+        the ability to sign as a faculty member or student. The faculty members can add books and omnibuses, while the
+        students can lend books and omnibuses as well as return them and extend the lendings.
+    </description>
     <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+    <url>https://github.com/EidurK/BigProject</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
