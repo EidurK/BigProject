@@ -14,8 +14,21 @@
         the ability to sign as a faculty member or student. The faculty members can add books and omnibuses, while the
         students can lend books and omnibuses as well as return them and extend the lendings.
     </description>
+
     <!-- FIXME change it to the project's website -->
     <url>https://github.com/EidurK/BigProject</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>University of Iceland</name>
+        <url>https://www.hi.is/</url>
+    </organization>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
