@@ -14,9 +14,15 @@ you `git clone` it. The provided Maven POM includes the algs4 & the JUnit4 depen
 
 ### Jar
 
+
+
  - First navigate to the BigProject directory.
- - Next, in your terminal run the command `sh createjar.cmd` to generate a compressed jar file and place it in the current directory.
- - Finally, in your terminal the command `sh runjar.cmd` to run the jar file
+
+   - Next, in your terminal run the command `sh createjar.cmd` to generate a compressed jar file and place it in the current directory.
+- For MacOS or Linux:
+  - In your terminal the command `sh runjar.cmd` to run the jar file
+ - For Windows:
+   - In your terminal the command `sh runjar.bat` to run the jar file
 
 ---
 ## Building
